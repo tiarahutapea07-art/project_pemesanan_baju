@@ -17,14 +17,13 @@
             <option value="L">L (+10.000)</option>
             <option value="XL">XL (+15.000)</option>
         </select><br><br>
-
-        Bahan: (Bisa pilih lebih dari satu)<br>
-        <input type="checkbox" name="bahan[]" value="Katun"> Katun
-        <input type="checkbox" name="bahan[]" value="Linen"> Linen
-        <input type="checkbox" name="bahan[]" value="Rayon"> Rayon
-        <input type="checkbox" name="bahan[]" value="Sutra"> Sutra
-        <input type="checkbox" name="bahan[]" value="Spandex"> Spandex<br><br>
-
+        
+        Bahan: (Pilih salah satu)<br>
+        <input type="radio" name="bahan" value="Katun" required> Katun
+        <input type="radio" name="bahan" value="Linen"> Linen
+        <input type="radio" name="bahan" value="Rayon"> Rayon
+        <input type="radio" name="bahan" value="Sutra"> Sutra
+        <input type="radio" name="bahan" value="Spandex"> Spandex<br><br>
         <button type="submit" name="proses">Hitung Total</button>
     </form>
 
@@ -35,7 +34,7 @@
         $nama = $_POST['nama'];
         $qty = $_POST['jumlah'];
         $ukuran = $_POST['ukuran'];
-        $bahan_terpilih = isset($_POST['bahan']) ? $_POST['bahan'] : [];
+        $bahan_terpilih = isset($_POST['bahan']) ? $_POST['bahan'] : "belum dipilih";
 
         // Logika Harga
         $harga_dasar = 110000;
@@ -53,7 +52,7 @@
         echo "Nama Pembeli: " . htmlspecialchars($nama) . "<br>";
         echo "Ukuran: " . $ukuran . "<br>";
         echo "Jumlah: " . $qty . " pcs<br>";
-        echo "Bahan: " . (empty($bahan_terpilih) ? "-" : implode(", ", $bahan_terpilih)) . "<br>";
+        echo "Bahan: " . $bahan_terpilih . "<br>";
         echo "<strong>Total Bayar: Rp " . number_format($total_bayar, 0, ',', '.') . "</strong>";
     }
     ?>
